@@ -1,5 +1,7 @@
 package com.rocketteam.iwastecash;
 
+import com.rocketteam.iwastecash.model.IwasteCash;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -23,6 +25,8 @@ public class IWasteCashActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        
+        IwasteCash.get().RunTest();
     }
 
 
@@ -58,6 +62,7 @@ public class IWasteCashActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_iwaste_cash, container, false);
+            
             return rootView;
         }
     }

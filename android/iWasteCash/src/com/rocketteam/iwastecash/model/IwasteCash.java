@@ -1,19 +1,20 @@
 package com.rocketteam.iwastecash.model;
 
 import java.math.BigDecimal;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.ArrayList;
 
 import android.util.Log;
 
+import com.rocketteam.iwastecash.exceptions.IwasteCashException;
+
 public class IwasteCash {
 	public static String TAG = "com.rocketteam.iwastecash.model.IwasteCash";
-	
 	private static IwasteCash instance = null;
 	
+	private ArrayList<Purchase> purchases;
+	
 	private IwasteCash() {
-		
+		purchases = new ArrayList<Purchase>();
 	}
 	
 	public static IwasteCash get() {
@@ -29,13 +30,10 @@ public class IwasteCash {
 		Log.w(TAG, p.getJson().toString());
 		
 		String json = "{\"amountTotal\":34.95,\"id\":\"36d1fb49-8e53-436d-a85a-a3d381dedfdb\",\"category\":\"Casual\",\"currencyCode\":\"COP\",\"order\":0,\"created\":\"5/5/14 3:58 PM\",\"amountOffset\":0,\"comments\":\"These are the other comments\"}";
-		JSONObject jo;
 		try {
-			jo = new JSONObject(json);
-			Purchase p2 = Purchase.fromJson(jo);
+			Purchase p2 = Purchase.fromJson(json);
 			Log.w(TAG, p2.getJson().toString());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+		} catch (IwasteCashException e) {
 			e.printStackTrace();
 		}
 	}

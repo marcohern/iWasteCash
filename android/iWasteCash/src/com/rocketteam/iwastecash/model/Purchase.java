@@ -9,6 +9,8 @@ import java.util.UUID;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.rocketteam.iwastecash.exceptions.IwasteCashParseJsonException;
+
 public class Purchase implements JsonSerializable {
 	private UUID id;
 	private Date created;
@@ -112,8 +114,24 @@ public class Purchase implements JsonSerializable {
 		this(category, comments, total, new BigDecimal(0.0), "COP");
 	}
 	
-	public static Purchase fromJson(JSONObject j) {
-		
+	public static Purchase fromJson(String json)
+		throws IwasteCashParseJsonException
+	{
+		JSONObject jo;
+		try {
+			jo = new JSONObject(json);
+			Purchase p2 = Purchase.fromJson(jo);
+			return p2;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new IwasteCashParseJsonException("general JSON parsing error", e);
+		}
+	}
+	
+	public static Purchase fromJson(JSONObject j)
+		throws IwasteCashParseJsonException
+	{
 		Purchase p = null;
 		
 		try {
@@ -137,10 +155,10 @@ public class Purchase implements JsonSerializable {
 			
 		} catch (JSONException e) {
 			// Json get fails
-			e.printStackTrace();
+			throw new IwasteCashParseJsonException("Json .getString method failed", e);
 		} catch (ParseException e) {
 			// Date parse error
-			e.printStackTrace();
+			throw new IwasteCashParseJsonException("Likely date parse error", e);
 		}
 		
 		return p;

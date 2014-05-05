@@ -1,0 +1,54 @@
+iWa$te
+--------
+Purchase record
++- ID
++- Order
++- Date
++- Comments
++- Category 
++- Total
++- Items 
++- InSync
+
+Purchase Record Categories
+---
+Casual   : small things you may buy often, like a chocolate on the store
+Special  : things you buy occasionally, like clothes, or a video game
+Market   : do a monthly purchase of goods
+Transport: bus, taxi, etc.
+Car      : gasoline, 
+Breakfast: breakfast
+Lunch    : lunch
+Dinner   : dinner
+
+
++-----------------------+
+| Status/Balance        |
+|-----------------------|
+| List of Transactions  |
+| ...                   |
+| ...                   |
+
+
++-----------------------+
+| Trans. detail         |
+| ...                   |
+| ...                   |
+
+
++-----------------------+
+| Add Trans             |
+| Category : __________ |
+| Comment  : __________ |
+| Total    : __________ |
+|                       |
++-----------------------+
+
++-
+| Report: | Day | Mon   |
+|---
+| Balance:
+|-------
+| Daily 
+|
+|

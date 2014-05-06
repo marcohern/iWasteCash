@@ -47,5 +47,7 @@ public class IwasteCash {
 		} catch (IwasteCashException e) {
 			e.printStackTrace();
 		}
+		
+		IDataAccess da = DataAccessFactory.getDataAccess();
 	}
 }

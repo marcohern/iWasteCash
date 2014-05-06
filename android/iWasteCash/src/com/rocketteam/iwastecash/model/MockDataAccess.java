@@ -7,13 +7,36 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.rocketteam.iwastecash.exceptions.IwasteCashParseJsonException;
+
+import android.util.Log;
+
 public class MockDataAccess implements IDataAccess {
+	private static String TAG = "com.rocketteam.iwastecash.model.MockDataAccess"; 
 	
 	ArrayList<Purchase> purchases;
 	String[] categories = {
 		"Casual", "Special", "Market", "Transport",
 		"Car", "Breakfast", "Lunch", "Dinner"
 	};
+	
+	public static JSONArray toJson(ArrayList<Purchase> purchases)
+			throws IwasteCashParseJsonException {
+		JSONArray ja = new JSONArray();
+		try {
+			for (int i=0;i<purchases.size();i++) {
+				JSONObject jo = purchases.get(i).getJson();
+				ja.put(i, jo);
+			}
+		}catch(JSONException e) {
+			throw new IwasteCashParseJsonException("Unable to parse json array", e);
+		}
+		return ja;
+	}
 	
 	public MockDataAccess() {
 		purchases = new ArrayList<Purchase>();
@@ -42,12 +65,13 @@ public class MockDataAccess implements IDataAccess {
 			cati = (int)(categories.length * Math.random());
 			category = categories[cati];
 			d = 99 * Math.random();
-			amountTotal = new BigDecimal(d);
+			amountTotal = new BigDecimal(d).setScale(2, BigDecimal.ROUND_HALF_UP);
 			
 			Purchase p = new Purchase(
 				id, created, order, comments, category,
 				amountTotal, amountOffset, currencyCode
 			);
+			Log.w(TAG, p.getJson().toString());
 			purchases.add(p);
 		}
 	}

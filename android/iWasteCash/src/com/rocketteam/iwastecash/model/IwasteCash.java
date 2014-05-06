@@ -24,6 +24,17 @@ public class IwasteCash {
 		return instance;
 	}
 	
+	public void addPurchase(Purchase purchase) {
+		purchases.add(purchase);
+	}
+	
+	public Purchase getPurchase(int index) {
+		if (index < purchases.size()) {
+			return purchases.get(index);
+		}
+		return null;
+	}
+	
 	public void RunTest() {
 		BigDecimal total = new BigDecimal(10);
 		Purchase p = new Purchase("Casual","These are the comments", total, BigDecimal.ZERO, "COP");

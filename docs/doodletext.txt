@@ -53,4 +53,5 @@ Dinner   : dinner
 |
 |
 
+05-05 15:58:13.560: W/com.rocketteam.iwastecash.model.IwasteCash(1509): {"amountTotal":10,"id":"93672ac8-1cdc-445e-8fd3-716dfab3b7e2","category":"Casual","currencyCode":"COP","order":0,"created":"5\/5\/14 3:58 PM","amountOffset":0,"comments":"These are the comments"}
 

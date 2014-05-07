@@ -2,6 +2,9 @@ package com.rocketteam.iwastecash.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import android.util.Log;
 
@@ -36,6 +39,7 @@ public class IwasteCash {
 	}
 	
 	public void RunTest() {
+		Calendar c = new GregorianCalendar(2012,2,1);
 		BigDecimal total = new BigDecimal(10);
 		Purchase p = new Purchase("Casual","These are the comments", total, BigDecimal.ZERO, "COP");
 		Log.w(TAG, p.getJson().toString());
@@ -48,6 +52,16 @@ public class IwasteCash {
 			e.printStackTrace();
 		}
 		
+		Date start = c.getTime();
+		c.add(Calendar.MONTH, 1);
+		Date end = c.getTime();
+		
 		IDataAccess da = DataAccessFactory.getDataAccess();
+		ArrayList<Purchase> ps1 = da.getAllPurchases();
+		ArrayList<Purchase> ps2 = da.getPurchasesBefore(start);
+		ArrayList<Purchase> ps3 = da.getPurchasesBetween(start, end);
+		Log.w(TAG, "Total purchases: " + ps1.size());
+		Log.w(TAG, "Purchases before " + start.toString() + ": " + ps2.size());
+		Log.w(TAG, "Purchases between " + start.toString() + " and " + end.toString() + ": " + ps3.size());
 	}
 }

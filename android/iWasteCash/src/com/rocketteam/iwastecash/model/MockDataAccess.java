@@ -18,8 +18,8 @@ import android.util.Log;
 public class MockDataAccess implements IDataAccess {
 	private static String TAG = "com.rocketteam.iwastecash.model.MockDataAccess"; 
 	
-	ArrayList<Purchase> purchases;
-	String[] categories = {
+	private ArrayList<Purchase> purchases;
+	private String[] categories = {
 		"Casual", "Special", "Market", "Transport",
 		"Car", "Breakfast", "Lunch", "Dinner"
 	};
@@ -55,7 +55,8 @@ public class MockDataAccess implements IDataAccess {
 		
 		for (int i=0;i<100;i++) {
 			dt = c.getTime();
-			c.add(Calendar.HOUR, 1);
+			c.add(Calendar.DAY_OF_MONTH, 1);
+			c.add(Calendar.HOUR, 3);
 			c.add(Calendar.MINUTE, 10);
 			
 			id = UUID.randomUUID();
@@ -78,7 +79,11 @@ public class MockDataAccess implements IDataAccess {
 
 	@Override
 	public ArrayList<Purchase> getAllPurchases() {
-		return purchases;
+		ArrayList<Purchase> ps = new ArrayList<Purchase>();
+		for(int i=0;i<purchases.size(); i++) {
+			ps.add(purchases.get(i));
+		}
+		return ps;
 	}
 
 	@Override
@@ -99,7 +104,7 @@ public class MockDataAccess implements IDataAccess {
 		for (int i=0; i<purchases.size(); i++) {
 			Purchase p = purchases.get(i);
 			Date created = p.getCreated();
-			if (created.after(start) && created.before(end)) {
+			if ((created.equals(start) || created.after(start)) && created.before(end)) {
 				ps.add(p);
 			}
 		}

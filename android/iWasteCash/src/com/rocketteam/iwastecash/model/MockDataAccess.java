@@ -99,6 +99,18 @@ public class MockDataAccess implements IDataAccess {
 	}
 
 	@Override
+	public ArrayList<Purchase> getPurchasesAfter(Date date) {
+		ArrayList<Purchase> ps = new ArrayList<Purchase>();
+		for (int i=0; i<purchases.size(); i++) {
+			Purchase p = purchases.get(i);
+			if (p.getCreated().after(date)) {
+				ps.add(p);
+			}
+		}
+		return ps;
+	}
+
+	@Override
 	public ArrayList<Purchase> getPurchasesBetween(Date start, Date end) {
 		ArrayList<Purchase> ps = new ArrayList<Purchase>();
 		for (int i=0; i<purchases.size(); i++) {

@@ -59,9 +59,11 @@ public class IwasteCash {
 		IDataAccess da = DataAccessFactory.getDataAccess();
 		ArrayList<Purchase> ps1 = da.getAllPurchases();
 		ArrayList<Purchase> ps2 = da.getPurchasesBefore(start);
-		ArrayList<Purchase> ps3 = da.getPurchasesBetween(start, end);
+		ArrayList<Purchase> ps3 = da.getPurchasesAfter(start);
+		ArrayList<Purchase> ps4 = da.getPurchasesBetween(start, end);
 		Log.w(TAG, "Total purchases: " + ps1.size());
 		Log.w(TAG, "Purchases before " + start.toString() + ": " + ps2.size());
-		Log.w(TAG, "Purchases between " + start.toString() + " and " + end.toString() + ": " + ps3.size());
+		Log.w(TAG, "Purchases after " + start.toString() + ": " + ps3.size());
+		Log.w(TAG, "Purchases between " + start.toString() + " and " + end.toString() + ": " + ps4.size());
 	}
 }

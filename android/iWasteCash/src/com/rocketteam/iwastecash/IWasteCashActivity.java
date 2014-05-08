@@ -22,7 +22,7 @@ public class IWasteCashActivity extends ActionBarActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new PurchaseFragment())
                     .commit();
         }
         

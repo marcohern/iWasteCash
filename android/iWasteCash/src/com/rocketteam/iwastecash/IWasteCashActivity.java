@@ -1,34 +1,23 @@
 package com.rocketteam.iwastecash;
 
-import com.rocketteam.iwastecash.model.IwasteCash;
-
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 
-public class IWasteCashActivity extends ActionBarActivity {
+public class IWasteCashActivity extends SingleFragmentActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_iwaste_cash);
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PurchaseFragment())
-                    .commit();
-        }
-        
-        IwasteCash.get().RunTest();
-    }
-
+	public static String TAG = "com.rocketteam.iwastecash.IWasteCashActivity"; 
+	
+	@Override
+	protected Fragment createFragment() {
+		Log.d(TAG, "createFragment");
+		return new PurchaseListFragment();
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

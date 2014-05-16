@@ -15,9 +15,11 @@ public class IwasteCash {
 	private static IwasteCash instance = null;
 	
 	private ArrayList<Purchase> purchases;
+	IDataAccess dataAccess;
 	
 	private IwasteCash() {
-		purchases = new ArrayList<Purchase>();
+		dataAccess = DataAccessFactory.getDataAccess();
+		purchases = dataAccess.getAllPurchases();
 	}
 	
 	public static IwasteCash get() {
@@ -36,6 +38,10 @@ public class IwasteCash {
 			return purchases.get(index);
 		}
 		return null;
+	}
+	
+	public ArrayList<Purchase> getAllPurchases() {
+		return  purchases;
 	}
 	
 	public void RunTest() {

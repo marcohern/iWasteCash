@@ -41,7 +41,7 @@ public class MockDataAccess implements IDataAccess {
 	public MockDataAccess() {
 		purchases = new ArrayList<Purchase>();
 		
-		Calendar c = new GregorianCalendar(2012,1,1);
+		Calendar c = new GregorianCalendar(2014,6,1);
 		Date dt;
 		Date created;
 		UUID id;
@@ -55,9 +55,9 @@ public class MockDataAccess implements IDataAccess {
 		
 		for (int i=0;i<100;i++) {
 			dt = c.getTime();
-			c.add(Calendar.DAY_OF_MONTH, 1);
-			c.add(Calendar.HOUR, 3);
-			c.add(Calendar.MINUTE, 10);
+			c.add(Calendar.DAY_OF_MONTH, -1);
+			c.add(Calendar.HOUR, -3);
+			c.add(Calendar.MINUTE, -10);
 			
 			id = UUID.randomUUID();
 			created = dt;
@@ -122,4 +122,12 @@ public class MockDataAccess implements IDataAccess {
 		}
 		return ps;
 	}
+
+	@Override
+	public Purchase createRandom(Calendar calendar) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }

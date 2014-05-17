@@ -8,5 +8,6 @@
     <string name="purchase_list_item_title">Titulo de Elemento</string>
     <string name="purchase_list_item_subtitle">Subtitulo del elemento.</string>
     <string name="purchase_list_item_image_desc">Categoria de la Imagen</string>
+    <string name="purchase_list_item_sectionTitle">Section Title</string>
 
 </resources>

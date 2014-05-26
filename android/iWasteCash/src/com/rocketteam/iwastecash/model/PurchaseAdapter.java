@@ -1,9 +1,6 @@
 package com.rocketteam.iwastecash.model;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import com.rocketteam.iwastecash.R;
 
@@ -16,10 +13,8 @@ import android.widget.TextView;
 
 public class PurchaseAdapter extends ArrayAdapter<Purchase> {
 	
-	private int prevDate;
 	public PurchaseAdapter(Context context, ArrayList<Purchase> purchases) {
 		super(context,0,purchases);
-		prevDate = 0;
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -30,6 +25,7 @@ public class PurchaseAdapter extends ArrayAdapter<Purchase> {
 		if (convertView == null) {
 			convertView = activity.getLayoutInflater().inflate(R.layout.fragment_purchase_list_item, null);
 		}
+		Purchase pr = (position <= 0) ? null : getItem(position-1);
 		Purchase p = getItem(position);
 		
 		TextView title = (TextView)convertView.findViewById(R.id.purchase_list_item_title);
@@ -40,14 +36,15 @@ public class PurchaseAdapter extends ArrayAdapter<Purchase> {
 		title.setText(p.getCategory());
 		subtitle.setText(p.getComments());
 		
-		int currDate = (p.getCreated().getYear() + 1900)*10000 + p.getCreated().getMonth()*100;
-
+		int currDate = (p.getCreated().getYear() + 1900)*100 + p.getCreated().getMonth();
 		section.setText("" + currDate);
-		if (prevDate!=currDate) {
-			section.setVisibility(TextView.VISIBLE);
-			prevDate = currDate;
-		} else {
-			section.setVisibility(TextView.GONE);
+		section.setVisibility(TextView.VISIBLE);
+		if (pr != null) {
+			
+			int prevDate = (pr.getCreated().getYear() + 1900)*100 + pr.getCreated().getMonth();
+			if (prevDate == currDate) {
+				section.setVisibility(TextView.GONE);
+			}
 		}
 		
 		return convertView;
